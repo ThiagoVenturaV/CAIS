@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Acesso ao CAIS — Central de Alerta e Inteligência para Segurança">
+  <title>Entrar · CAIS</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <main class="login-shell">
+    <section class="login-story" aria-labelledby="story-title">
+      <a class="brand" href="./" aria-label="CAIS — início">
+        <svg class="brand-mark" viewBox="0 0 112 112" aria-hidden="true">
+          <path fill="#EDEFF2" d="M8 30 38 4h66v26H52L34 45v22l18 15h52v26H38L8 82z"/>
+          <circle cx="70" cy="56" r="10" fill="#E98A21"/>
+        </svg>
+        <span class="brand-copy"><strong>CAIS</strong><span>Central de Alerta e Inteligência para Segurança</span></span>
+      </a>
+      <div>
+        <p class="eyebrow">Dados que chegam à decisão</p>
+        <h1>A informação certa, <em>no momento certo.</em></h1>
+        <p>Inteligência operacional para antecipar demandas, apoiar gestores e fazer alertas validados chegarem aos guardas em campo.</p>
+      </div>
+      <div class="story-footer"><span class="signal-pulse"></span> Ambiente demonstrativo · dados híbridos e sintéticos</div>
+    </section>
+
+    <section class="login-panel" aria-labelledby="login-title">
+      <div class="login-card">
+        <p class="eyebrow">Acesso seguro</p>
+        <h2 id="login-title">Bem-vindo ao CAIS</h2>
+        <p>Entre com o perfil da demonstração para acompanhar o fluxo completo.</p>
+
+        <form id="login-form" class="login-form">
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input class="input" id="email" name="email" type="email" autocomplete="username" required value="gestora@cais.recife.br">
+          </div>
+          <div class="field">
+            <label for="password">Senha</label>
+            <input class="input" id="password" name="password" type="password" autocomplete="current-password" required value="cais2026">
+          </div>
+          <div id="login-error" class="hint hidden" role="alert"></div>
+          <button id="login-submit" class="btn btn-primary btn-wide" type="submit">Entrar no sistema</button>
+        </form>
+
+        <div class="persona-grid" aria-label="Preencher credenciais de demonstração">
+          <button class="persona" type="button" data-demo="manager"><strong>Gestora CAIS</strong><span>Painel e aprovação</span></button>
+          <button class="persona" type="button" data-demo="guard"><strong>Guarda GCM-12</strong><span>Receber e confirmar</span></button>
+        </div>
+
+        <details class="api-config">
+          <summary class="hint">Configurar endereço da API</summary>
+          <div class="field" style="margin-top:12px">
+            <label for="api-url">Backend HTTPS</label>
+            <input class="input" id="api-url" type="url" placeholder="https://seu-backend.ngrok.app">
+            <span class="hint">Use http://localhost:8000 no desenvolvimento ou a URL HTTPS do ngrok.</span>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+  <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Alertas em campo do CAIS">
+  <title>Alertas em campo · CAIS</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="guard-page">
+  <div class="guard-app">
+    <header class="guard-header">
+      <div class="guard-header-top">
+        <a class="brand" href="guarda.html" aria-label="CAIS">
+          <svg class="brand-mark" viewBox="0 0 112 112" aria-hidden="true"><path fill="#EDEFF2" d="M8 30 38 4h66v26H52L34 45v22l18 15h52v26H38L8 82z"/><circle cx="70" cy="56" r="10" fill="#E98A21"/></svg>
+          <span class="brand-copy"><strong>CAIS</strong><span>Operação em campo</span></span>
+        </a>
+        <button id="guard-logout" class="btn btn-ghost btn-sm" style="color:#fff" type="button">Sair</button>
+      </div>
+      <h1>Olá, <span id="guard-first-name">guarda</span>.</h1>
+      <p><span id="guard-code">GCM</span> · <span id="guard-specialization">Operação</span> · <span class="status-dot online"></span> conectado</p>
+    </header>
+
+    <main class="guard-main">
+      <div class="guard-section-head"><h2>Alertas recebidos</h2><button id="guard-refresh" class="btn btn-secondary btn-sm" type="button">↻ Atualizar</button></div>
+      <div id="dispatch-list"><div class="empty-state">Buscando alertas…</div></div>
+    </main>
+
+    <nav class="guard-nav" aria-label="Navegação do guarda">
+      <button class="active" type="button"><b>◉</b>Alertas</button>
+      <button type="button" id="guard-history"><b>✓</b>Confirmados</button>
+      <button type="button" id="guard-profile"><b>●</b>Meu perfil</button>
+    </nav>
+  </div>
+  <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/guarda.js"></script>
+</body>
+</html>

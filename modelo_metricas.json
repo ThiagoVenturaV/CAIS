@@ -1,0 +1,128 @@
+{
+  "generated_at": "2026-09-19T17:37:02.410880+00:00",
+  "dataset": {
+    "rows": 5000,
+    "train_rows": 4000,
+    "test_rows": 1000,
+    "positive_rate": 0.1534,
+    "nature": "hibrida",
+    "warning": "A base combina dados públicos e variáveis sintéticas. Estas métricas validam o protótipo e não representam desempenho comprovado em operação real."
+  },
+  "split": {
+    "test_size": 0.2,
+    "stratified": true,
+    "random_state": 42
+  },
+  "threshold": 0.5,
+  "metrics": {
+    "accuracy": 0.909,
+    "precision_positive": 0.6987,
+    "recall_positive": 0.7124,
+    "f1_positive": 0.7055,
+    "roc_auc": 0.8356,
+    "pr_auc": 0.7178,
+    "confusion_matrix": {
+      "true_negative": 800,
+      "false_positive": 47,
+      "false_negative": 44,
+      "true_positive": 109
+    },
+    "classification_report": {
+      "0": {
+        "precision": 0.9478672985781991,
+        "recall": 0.9445100354191264,
+        "f1-score": 0.9461856889414547,
+        "support": 847.0
+      },
+      "1": {
+        "precision": 0.6987179487179487,
+        "recall": 0.7124183006535948,
+        "f1-score": 0.7055016181229773,
+        "support": 153.0
+      },
+      "accuracy": 0.909,
+      "macro avg": {
+        "precision": 0.8232926236480739,
+        "recall": 0.8284641680363606,
+        "f1-score": 0.825843653532216,
+        "support": 1000.0
+      },
+      "weighted avg": {
+        "precision": 0.9097474480495809,
+        "recall": 0.909,
+        "f1-score": 0.9093610261062277,
+        "support": 1000.0
+      }
+    }
+  },
+  "model": {
+    "algorithm": "RandomForestClassifier",
+    "n_estimators": 300,
+    "max_depth": 12,
+    "min_samples_leaf": 2,
+    "class_weight": "balanced_subsample",
+    "sklearn_version": "1.8.0",
+    "top_features": [
+      {
+        "feature": "numeric__eventos_proximos",
+        "importance": 0.23538
+      },
+      {
+        "feature": "numeric__densidade_pessoas",
+        "importance": 0.19063
+      },
+      {
+        "feature": "numeric__historico_ocorrencias_7d",
+        "importance": 0.13759
+      },
+      {
+        "feature": "numeric__hora_dia",
+        "importance": 0.08996
+      },
+      {
+        "feature": "numeric__iluminacao_ativa_pct",
+        "importance": 0.06204
+      },
+      {
+        "feature": "numeric__dia_semana",
+        "importance": 0.0596
+      },
+      {
+        "feature": "categorical__local_Praça São Francisco/Amante Das Flores",
+        "importance": 0.00514
+      },
+      {
+        "feature": "categorical__local_Academia Da Cidade",
+        "importance": 0.00377
+      },
+      {
+        "feature": "categorical__local_Praça Santa Eufrásia",
+        "importance": 0.00305
+      },
+      {
+        "feature": "categorical__local_Parque Treze De Maio",
+        "importance": 0.00262
+      },
+      {
+        "feature": "categorical__local_Praça Do Campo Santo",
+        "importance": 0.00247
+      },
+      {
+        "feature": "categorical__local_Praça Das Flores",
+        "importance": 0.00243
+      },
+      {
+        "feature": "categorical__local_Praça Da Rua Água Preta",
+        "importance": 0.00242
+      },
+      {
+        "feature": "categorical__local_Praça Fernando Galvão",
+        "importance": 0.00239
+      },
+      {
+        "feature": "categorical__local_Praça La Coruna",
+        "importance": 0.00229
+      }
+    ]
+  }
+}

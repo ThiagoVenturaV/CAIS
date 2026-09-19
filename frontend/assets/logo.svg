@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 112" role="img" aria-labelledby="title desc">
+  <title id="title">CAIS</title>
+  <desc id="desc">Central de Alerta e Inteligência para Segurança</desc>
+  <path fill="#0B2545" d="M12 30 42 4h90v26H56L38 45v22l18 15h76v26H42L12 82z"/>
+  <circle cx="80" cy="56" r="10" fill="#E98A21"/>
+  <text x="154" y="67" fill="#0B2545" font-family="Inter,Arial,sans-serif" font-size="54" font-weight="800" letter-spacing="1">CAIS</text>
+  <text x="156" y="88" fill="#0B2545" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="600">CENTRAL DE ALERTA E INTELIGÊNCIA PARA SEGURANÇA</text>
+</svg>
