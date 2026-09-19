@@ -1,0 +1,14 @@
+.git
+.github
+.env
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+frontend
+docs
+data/*.db
+dataset_seops.csv
+script.py
+treinamento.py
+requirements-dev.txt

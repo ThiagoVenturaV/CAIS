@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Painel operacional do gestor CAIS">
+  <title>Visão operacional · CAIS</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="gestor.html" aria-label="CAIS — visão operacional">
+        <svg class="brand-mark" viewBox="0 0 112 112" aria-hidden="true"><path fill="#EDEFF2" d="M8 30 38 4h66v26H52L34 45v22l18 15h52v26H38L8 82z"/><circle cx="70" cy="56" r="10" fill="#E98A21"/></svg>
+        <span class="brand-copy"><strong>CAIS</strong><span>Inteligência operacional</span></span>
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <button class="nav-link active" type="button" data-section="overview"><span class="nav-icon">◫</span>Visão operacional</button>
+        <button class="nav-link" type="button" data-section="events"><span class="nav-icon">◉</span>Eventos</button>
+        <button class="nav-link" type="button" id="nav-reports"><span class="nav-icon">▤</span>Relatórios</button>
+        <button class="nav-link" type="button" id="nav-agent"><span class="nav-icon">✦</span>Agente CAIS</button>
+        <button class="nav-link" type="button" id="nav-metrics"><span class="nav-icon">↗</span>Métricas do modelo</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="operator">
+          <span class="avatar" id="user-avatar">MA</span>
+          <span><strong id="user-name">Gestora</strong><span>Gestão operacional</span></span>
+        </div>
+        <button id="logout" class="btn btn-ghost logout" type="button">Sair do sistema</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow">Centro de operações</p><h1>Visão operacional</h1></div>
+        <div class="top-actions">
+          <span class="connection"><span id="connection-dot" class="status-dot warning"></span><span id="connection-label">Conectando</span></span>
+          <button id="simulate-open" class="btn btn-orange" type="button">＋ Novo sinal</button>
+        </div>
+      </header>
+
+      <section class="metrics-grid" aria-label="Resumo operacional">
+        <article class="metric-card"><span class="metric-label">Eventos monitorados</span><strong id="metric-total" class="metric-value">—</strong><span class="metric-meta">base operacional atual</span></article>
+        <article class="metric-card metric-accent"><span class="metric-label">Aguardando decisão</span><strong id="metric-pending" class="metric-value">—</strong><span class="metric-meta">exigem revisão humana</span></article>
+        <article class="metric-card"><span class="metric-label">Alertas distribuídos</span><strong id="metric-distributed" class="metric-value">—</strong><span class="metric-meta">enviados após aprovação</span></article>
+        <article class="metric-card"><span class="metric-label">Confirmação de recebimento</span><strong id="metric-ack" class="metric-value">—</strong><span class="metric-meta">dos destinatários</span></article>
+      </section>
+
+      <section class="workspace-grid">
+        <article class="panel map-card">
+          <header class="panel-head"><div><h2>Contexto territorial</h2><p>Sinais enriquecidos em visualização demonstrativa</p></div><span class="badge"><span class="status-dot online"></span>Atualização ao vivo</span></header>
+          <div id="map-stage" class="map-stage" aria-label="Mapa operacional demonstrativo">
+            <span class="map-label" style="top:17%;left:12%">Recife Antigo</span>
+            <span class="map-label" style="top:63%;left:64%">Centro</span>
+            <span class="map-label" style="top:31%;left:69%">Santo Amaro</span>
+            <div class="map-legend"><span><i class="legend-dot" style="background:var(--danger)"></i>Alta</span><span><i class="legend-dot" style="background:var(--orange)"></i>Média</span><span><i class="legend-dot" style="background:var(--success)"></i>Baixa</span></div>
+          </div>
+        </article>
+        <article class="panel">
+          <header class="panel-head"><div><h2>Leitura do CAIS</h2><p>Prioridades calculadas pelo modelo local</p></div></header>
+          <div id="insight-list" class="insight-list"><div class="empty-state"><span>Carregando análises…</span></div></div>
+        </article>
+      </section>
+
+      <section id="events-section">
+        <div class="filters" aria-label="Filtros de eventos">
+          <input id="filter-query" class="input" type="search" placeholder="Buscar por local ou ocorrência">
+          <select id="filter-status" class="select"><option value="">Todos os status</option><option value="pending_approval">Aguardando decisão</option><option value="distributed">Distribuídos</option><option value="rejected">Rejeitados</option><option value="completed">Concluídos</option></select>
+          <select id="filter-criticality" class="select"><option value="">Todas as criticidades</option><option value="high">Alta</option><option value="medium">Média</option><option value="low">Baixa</option></select>
+          <input id="filter-local" class="input" type="search" placeholder="Filtrar local">
+        </div>
+        <article class="panel events-table">
+          <header class="panel-head"><div><h2>Eventos operacionais</h2><p id="events-count">Atualizando…</p></div><button id="refresh" class="btn btn-secondary btn-sm" type="button">↻ Atualizar</button></header>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Evento</th><th>Criticidade</th><th>Score</th><th>Status</th><th>Recebido</th></tr></thead>
+              <tbody id="events-body"><tr><td colspan="5"><div class="empty-state">Carregando eventos…</div></td></tr></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section id="reports-section" class="reports-section">
+        <article class="panel">
+          <header class="panel-head reports-head">
+            <div><h2>Relatórios gerenciais</h2><p id="reports-schedule">Consolidando agenda…</p></div>
+            <button id="generate-report" class="btn btn-orange btn-sm" type="button">＋ Gerar agora</button>
+          </header>
+          <div id="reports-list" class="reports-list"><div class="empty-state">Carregando relatórios…</div></div>
+        </article>
+      </section>
+    </main>
+
+    <aside class="event-rail" aria-label="Fluxo de eventos">
+      <header class="rail-head"><div class="rail-head-top"><h2>Eventos</h2><span class="live-label"><span class="status-dot online"></span>Ao vivo</span></div><p>Alertas, notificações e insights aguardando sua atenção.</p></header>
+      <div id="rail-list" class="rail-list"><div class="empty-state">Aguardando sinais…</div></div>
+      <div class="rail-actions"><button id="rail-view-all" class="btn btn-secondary btn-wide btn-sm" type="button">Ver todos os eventos</button></div>
+    </aside>
+  </div>
+
+  <button id="chat-open" class="btn btn-primary chat-fab" type="button">✦ Perguntar ao CAIS</button>
+  <section id="chat-drawer" class="chat-drawer hidden" aria-label="Agente CAIS">
+    <header class="chat-head"><div><strong>✦ Agente CAIS</strong><span>Busca híbrida · evidências operacionais</span></div><button id="chat-close" class="btn btn-ghost btn-icon" style="color:white" aria-label="Fechar" type="button">×</button></header>
+    <div id="chat-log" class="chat-log"><div class="message agent">Olá. Posso buscar eventos, padrões e indicadores disponíveis no CAIS. Minhas respostas não substituem a decisão do gestor.</div></div>
+    <form id="chat-form" class="chat-form"><label class="sr-only" for="chat-input">Pergunta</label><input id="chat-input" class="input" placeholder="Ex.: Onde há alertas de alta criticidade?" required maxlength="1500"><button class="btn btn-orange btn-icon" type="submit" aria-label="Enviar">➜</button></form>
+  </section>
+
+  <div id="event-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="event-modal-title">
+    <section class="modal">
+      <header class="modal-head"><div><span id="event-modal-badge" class="badge">Evento</span><h2 id="event-modal-title">Detalhe do evento</h2></div><button class="btn btn-secondary btn-icon" data-close="event-modal" aria-label="Fechar" type="button">×</button></header>
+      <div id="event-modal-body" class="modal-body"></div>
+      <footer id="event-modal-actions" class="modal-actions"></footer>
+    </section>
+  </div>
+
+  <div id="simulate-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="simulate-title">
+    <form id="simulate-form" class="modal modal-sm">
+      <header class="modal-head"><div><span class="badge badge-medium">Demonstração</span><h2 id="simulate-title">Enviar novo sinal</h2></div><button class="btn btn-secondary btn-icon" data-close="simulate-modal" aria-label="Fechar" type="button">×</button></header>
+      <div class="modal-body" style="display:grid;gap:13px">
+        <div class="field"><label for="signal-local">Local</label><input id="signal-local" class="input" required value="Praça do Arsenal"></div>
+        <div class="field"><label for="signal-description">Descrição do sinal</label><textarea id="signal-description" class="textarea" required>Chamados correlacionados e aumento de fluxo durante evento próximo.</textarea></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="field"><label for="signal-density">Densidade (0–100)</label><input id="signal-density" class="input" type="number" min="0" max="100" value="88" required></div>
+          <div class="field"><label for="signal-history">Ocorrências em 7 dias</label><input id="signal-history" class="input" type="number" min="0" value="12" required></div>
+          <div class="field"><label for="signal-lighting">Iluminação ativa (%)</label><input id="signal-lighting" class="input" type="number" min="0" max="100" value="48" required></div>
+          <div class="field"><label for="signal-event">Evento próximo</label><select id="signal-event" class="select"><option value="1">Sim</option><option value="0">Não</option></select></div>
+        </div>
+        <span class="hint">A API responderá 202 e o processamento acontecerá pelo barramento de eventos.</span>
+      </div>
+      <footer class="modal-actions"><button class="btn btn-secondary" data-close="simulate-modal" type="button">Cancelar</button><button id="simulate-submit" class="btn btn-orange" type="submit">Enviar sinal</button></footer>
+    </form>
+  </div>
+
+  <div id="metrics-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="metrics-title">
+    <section class="modal modal-sm"><header class="modal-head"><div><span class="badge">Validação do protótipo</span><h2 id="metrics-title">Métricas do modelo</h2></div><button class="btn btn-secondary btn-icon" data-close="metrics-modal" aria-label="Fechar" type="button">×</button></header><div id="metrics-modal-body" class="modal-body"><div class="empty-state">Carregando métricas…</div></div></section>
+  </div>
+
+  <div id="report-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="report-modal-title">
+    <section class="modal report-modal">
+      <header class="modal-head"><div><span class="badge">Relatório gerencial</span><h2 id="report-modal-title">Detalhe do relatório</h2></div><button class="btn btn-secondary btn-icon" data-close="report-modal" aria-label="Fechar" type="button">×</button></header>
+      <div id="report-modal-body" class="modal-body"><div class="empty-state">Carregando relatório…</div></div>
+      <footer id="report-modal-actions" class="modal-actions"></footer>
+    </section>
+  </div>
+
+  <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/gestor.js"></script>
+</body>
+</html>

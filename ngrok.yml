@@ -1,0 +1,10 @@
+version: "3"
+agent:
+  web_addr: 0.0.0.0:4040
+  log_level: info
+  log_format: json
+endpoints:
+  - name: cais-api
+    upstream:
+      url: http://api:8000
+      protocol: http1
